@@ -1,22 +1,14 @@
 import Movie from "./Movie";
-export default function Carousel({ peliculas }) {
+export default function Carousel({peliculas, nombre}) {
   return (
     <>
-      {peliculas.map((pelicula) => {
-        return (
-          <div>
-            <h2>Mis pelis</h2>
-            <div className="scroll">
-              <Movie {...pelicula} key={pelicula.id} />
-              <Movie {...pelicula} key={pelicula.id} />
-              <Movie {...pelicula} key={pelicula.id} />
-              <Movie {...pelicula} key={pelicula.id} />
-              <Movie {...pelicula} key={pelicula.id} />
-              <Movie {...pelicula} key={pelicula.id} />
-            </div>
+      <div>
+        <h2>{nombre}</h2>
+          <div   className="scroll">
+            {peliculas.map(pelicula => <Movie {...pelicula} />)}
           </div>
-        );
-      })}
+      </div>
+      
       <style jsx>{`
         div {
           margin: 0px 20px;
@@ -47,3 +39,13 @@ export default function Carousel({ peliculas }) {
     </>
   );
 }
+// {peliculas.map((pelicula) => {
+//   return (
+//     <div>
+//       <h2>Mis pelis</h2>
+//       <div className="scroll">
+//         <Movie {...pelicula} key={pelicula.id} />
+//       </div>
+//     </div>
+//   );
+// })}
