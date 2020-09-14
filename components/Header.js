@@ -1,16 +1,26 @@
 import Link from "next/link";
+import { useAppContext } from './Context'
+import Button from './Button'
 export default function Header() {
+  const { usuario, setUsuario } = useAppContext()
   return (
     <>
       <header>
         <h3>Moflix</h3>
-        <div className="menu">
-          <input className="barraBusq" placeholder="Buscar..." />
-          <img
-            className="userImg"
-            src="https://lh3.googleusercontent.com/ogw/ADGmqu9qngaDjOg1wOjncVlMLEzgKcY7gRVHN1ojoV93=s32-c-mo"
-          />
-        </div>
+
+       {usuario.correo 
+        ? <div className="menu">
+            <input className="barraBusq" placeholder="Buscar..." type="search" name="busqueda" />
+            <img
+              className="userImg"
+              src="https://lh3.googleusercontent.com/ogw/ADGmqu9qngaDjOg1wOjncVlMLEzgKcY7gRVHN1ojoV93=s32-c-mo"
+            />
+            <Button onClick={()=>{setUsuario({})}}>Log out</Button>
+          </div>
+        : <Link href="auth">
+            <a>Login</a>
+          </Link>}
+        
       </header>
       <style jsx>{`
         header {
@@ -51,7 +61,7 @@ export default function Header() {
         .menu {
           display: flex;
         }
-      `}</style>
+      `}</style>  
     </>
   );
 }
