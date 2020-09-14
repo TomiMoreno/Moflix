@@ -5,7 +5,7 @@ export default function Carousel({peliculas, nombre}) {
       <div>
         <h2>{nombre}</h2>
           <div   className="scroll">
-            {peliculas.map(pelicula => <Movie {...pelicula} />)}
+            {peliculas.map(pelicula => <Movie {...pelicula} key={pelicula.id} />)}
           </div>
       </div>
       
