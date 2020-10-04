@@ -3,21 +3,22 @@ export default function Movie(props) {
   const [isHovering, setIsHovering] = useState(false)
   const {
     id,
-    titulo,
+    title,
     sinopsis,
     duracion,
     genero,
     clasificacion,
-    preview,
+    backdrop_path,
     link,
     director,
     reparto,
     estreno,
   } = props;
+  const miniatura = `https://image.tmdb.org/t/p/w780/${backdrop_path}`
   return (
     <>
       <div onMouseOver={() => {setIsHovering(true)}} onMouseOut={() => {setIsHovering(false)}}>
-        <h3>{titulo}</h3>
+        <h3>{title}</h3>
         {isHovering && <img src="/play.svg" />} 
       </div>
       <style jsx>{`
@@ -32,7 +33,7 @@ export default function Movie(props) {
         div {
           margin: 3px;
           padding: 3px;
-          background: url(${preview});
+          background: url(${miniatura});
           background-size: cover;
           min-width: 300px;
           width:300px;

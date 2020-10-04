@@ -1,16 +1,16 @@
-import moviesMock from '../server/mocks/moviesMock'
+import { traerPeliculas } from './api/movies'
 import { useState,useEffect } from "react";
 import Header from "../components/Header";
 import Carousel from "../components/Carousel";
 import {useAppContext} from "../components/Context";
 
-export default function Home({ peliculasPorCategoria }) {
+export default function Home({ peliculas }) {
   return (
     <>
       <Header />
       {
-        peliculasPorCategoria.map((category, id)=>
-          <Carousel peliculas={category} nombre={category[0].genero} key={category[0].genero}/>
+        peliculas.map((movie, id)=>
+          <Carousel peliculas={movie} key={id}/>
         )
       }
     </>
@@ -19,15 +19,16 @@ export default function Home({ peliculasPorCategoria }) {
 //
 
 export async function getStaticProps() {
-      let movies = moviesMock
-      const categories = []
-      while(movies.length){
-        categories.push(movies.filter((movie)=>movies[0].genero === movie.genero))
-        movies = movies.filter(({genero})=>movies[0].genero !== genero)
-      }
+  const peliculas = []
+  for(let i= 1; i<6;i++){
+    const movie = await traerPeliculas(i)
+    peliculas.push(movie.results)
+  }
+  //El primer elemento de todos es un mock, por eso lo borramos
+  peliculas[0].shift()
   return {
     props: {
-      peliculasPorCategoria: categories,
+      peliculas,
     },
   };
 }
