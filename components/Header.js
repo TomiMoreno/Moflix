@@ -29,11 +29,11 @@ export default function Header() {
             </Button>
           </div>
         ) : (
-          <Link href="auth">
-            <Button>
-              <a>Login</a>
-            </Button>
-          </Link>
+          <Button>
+            <Link href="auth">
+                <a>Login</a>
+            </Link>
+          </Button>
         )}
       </header>
       <style jsx>{`
