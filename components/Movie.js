@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import Video from './Video';
 export default function Movie(props) {
   const [isHovering, setIsHovering] = useState(false)
   const {
@@ -13,13 +14,14 @@ export default function Movie(props) {
     director,
     reparto,
     estreno,
+    setPlayMovie
   } = props;
   const miniatura = `https://image.tmdb.org/t/p/w780/${backdrop_path}`
   return (
     <>
       <div onMouseOver={() => {setIsHovering(true)}} onMouseLeave={() => {setIsHovering(false)}}>
             <h3>{title}</h3>
-            <img  src="/play.svg" />
+            <img  src="/play.svg" onClick={()=>{setPlayMovie(id)}} />
       </div>
       <style jsx>{`
         img{
@@ -30,6 +32,7 @@ export default function Movie(props) {
           background: white;
           border:black 1px solid;
           border-radius: 10%;
+          cursor:pointer;
           transition: visibility 0s, opacity 0.5s linear;
           ${isHovering ? 'visibility:visible; opacity: 1;': 'visibility:hidden;opacity: 0;'}
         }

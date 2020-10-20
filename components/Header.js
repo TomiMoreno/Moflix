@@ -18,7 +18,7 @@ export default function Header() {
             />
             <img
               className="userImg"
-              src="https://lh3.googleusercontent.com/ogw/ADGmqu9qngaDjOg1wOjncVlMLEzgKcY7gRVHN1ojoV93=s32-c-mo"
+              src="/user.svg"
             />
             <Button
               onClick={() => {
@@ -53,6 +53,7 @@ export default function Header() {
           border: 1px solid #ffffff;
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
           border-radius: 100px;
+          margin-right:5px;
         }
         .logo {
           width: 52px;
@@ -62,15 +63,16 @@ export default function Header() {
         .barraBusq {
           width: 353px;
           height: 39px;
-          border: 2px solid #ffffff;
-          box-sizing: border-box;
+          border: 2px solid gray;
           border-radius: 45px;
           margin: 0 10px;
-          display: flex;
-          align-items: center;
           background: none;
           color: white;
           padding: 0 20px;
+        }
+        .barraBusq:focus{
+          outline:none;
+          border-color:white;
         }
         .menu {
           display: flex;
