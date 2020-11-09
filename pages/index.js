@@ -4,16 +4,19 @@ import Header from "../components/Header";
 import Carousel from "../components/Carousel";
 import {useAppContext} from "../components/Context";
 import Video from '../components/Video';
+import Modal from '../components/Modal';
 
 export default function Home({ peliculas }) {
   const [playMovie, setPlayMovie] = useState(false)
+  const [useModal, setUseModal] = useState(false)
   return (
     <>
       {playMovie && <Video id={playMovie} setPlayMovie={setPlayMovie}/>}
+      {useModal && <Modal position={useModal?.position} movie={useModal?.movieData} setUseModal={setUseModal}/>}
       <Header />
       {
         peliculas.map((movie, id)=>
-          <Carousel peliculas={movie} setPlayMovie={setPlayMovie} key={id}/>
+          <Carousel peliculas={movie} setPlayMovie={setPlayMovie} setUseModal={setUseModal}key={id}/>
         )
       }
     </>

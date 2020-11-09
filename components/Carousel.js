@@ -1,10 +1,10 @@
 import Movie from "./Movie";
-export default function Carousel({peliculas, nombre, setPlayMovie}) {
+export default function Carousel({peliculas, nombre, setPlayMovie, setUseModal}) {
   return (
     <>
       <div>
           <div   className="scroll">
-            {peliculas.map(pelicula => <Movie {...pelicula} setPlayMovie={setPlayMovie} key={pelicula.id} />)}
+            {peliculas.map(pelicula => <Movie {...pelicula} setUseModal={setUseModal} setPlayMovie={setPlayMovie} key={pelicula.id} />)}
           </div>
       </div>
       

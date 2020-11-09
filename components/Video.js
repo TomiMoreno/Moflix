@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { BallTriangle}  from 'svg-loaders-react'
+
 export default function Video({id,setPlayMovie}){
   const [movieId, setMovieId] = useState("")
   useEffect(()=>{
@@ -13,15 +15,15 @@ export default function Video({id,setPlayMovie}){
   const height = globalThis.innerHeight*0.9
   return(
     <>
-    <div>
-      <h1 onClick={()=>{setPlayMovie(false)}}>X</h1>
+    <div onClick={()=>{setPlayMovie(false)}}>
+      <h1 className="cross" onClick={()=>{setPlayMovie(false)}}>X</h1>
       {movieId
       ? <iframe width={width} height={height} src={`https://www.youtube.com/embed/${movieId}`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-      : <h1>Cargando</h1>
+      : <BallTriangle />
     }
     </div>
     <style jsx>{`
-      h1{
+      .cross{
         position:absolute;
         top:10px;
         right:10px;

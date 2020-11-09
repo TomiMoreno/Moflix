@@ -50,7 +50,6 @@ export default function Header() {
         .userImg {
           width: 40px;
           height: 40px;
-          border: 1px solid #ffffff;
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
           border-radius: 100px;
           margin-right:5px;
