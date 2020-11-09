@@ -16,7 +16,7 @@ export default function Modal(props){
     const timer = setTimeout(()=>{ 
       if(hideMovie){
         setUseModal(false)}
-      },501)
+      },499)
     return () =>{
       window.clearTimeout(timer)
     }
@@ -49,8 +49,8 @@ export default function Modal(props){
   } = props.movie;
   const miniatura = `https://image.tmdb.org/t/p/w780/${backdrop_path}`
   return <>
-    <div onMouseOut={()=>{setHideMovie(true)}}onMouseOver={()=>{setHideMovie(false)}} className="modal" onWheel={(e)=>{wheelChange(e)}}> 
-      <div className="movie" onMouseOver={(e) => {setIsHovering(true)}} onMouseOut  ={() => {setIsHovering(false)}} onClick={()=>{setPlayMovie(id)}}>
+    <div onClick={()=>{setPlayMovie(id); setUseModal(false)}} onMouseOut={()=>{setHideMovie(true)}}onMouseOver={()=>{setHideMovie(false)}} className="modal" onWheel={(e)=>{wheelChange(e)}}> 
+      <div className="movie" onMouseOver={(e) => {setIsHovering(true)}} onMouseOut  ={() => {setIsHovering(false)}} >
               <h3>{title}</h3>
               <img  src="/play.svg" onClick={()=>{setPlayMovie(id)}} />
       </div>
