@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { useAppContext } from "./Context";
+import { useFetchUser } from "../utils/user";
 import Button from "./Button";
 export default function Header() {
-  const { usuario, setUsuario } = useAppContext();
+  const { user, loading } = useFetchUser();
   return (
     <>
       <header>
         <h3>Moflix</h3>
 
-        {usuario.correo ? (
+        {user ? (
           <div className="menu">
             <input
               className="barraBusq"
@@ -18,20 +18,18 @@ export default function Header() {
             />
             <img
               className="userImg"
-              src="/user.svg"
+              src={user?.picture || '/user.svg'}
             />
-            <Button
-              onClick={() => {
-                setUsuario({});
-              }}
-            >
-              Log out
-            </Button>
+            <Button>
+              <Link href="/api/logout">
+                  <a>Cerrar sesión</a>
+              </Link>
+          </Button>
           </div>
         ) : (
           <Button>
-            <Link href="auth">
-                <a>Login</a>
+            <Link href="/api/login">
+                <a>Iniciar sesión</a>
             </Link>
           </Button>
         )}

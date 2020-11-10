@@ -21,7 +21,7 @@ export default function Movie(props) {
     const timer = setTimeout(()=>{ 
       if(isHovering){
         setUseModal({position: position.getBoundingClientRect(), movieData: props})}
-      },500)
+      },499)
     return () =>{
       window.clearTimeout(timer)
     }

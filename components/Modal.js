@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 export default function Modal(props){
   const [isHovering, setIsHovering] = useState(false)
   const [hideMovie, setHideMovie] = useState(false)
-  const [position, setPosition] = useState(false)
+  const [position, setPosition] = useState(window.scrollY + props.position.top)
 
 
   useEffect(()=>{
@@ -16,7 +16,7 @@ export default function Modal(props){
     const timer = setTimeout(()=>{ 
       if(hideMovie){
         setUseModal(false)}
-      },499)
+      },500)
     return () =>{
       window.clearTimeout(timer)
     }
