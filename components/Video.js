@@ -1,7 +1,12 @@
+import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { BallTriangle}  from 'svg-loaders-react'
+import { useFetchUser } from "../utils/user";
 
 export default function Video({id,setPlayMovie}){
+  const router = useRouter()
+  const {user, loading} = useFetchUser()
+  if(!user) router.push('/api/login')
   const [movieId, setMovieId] = useState("")
   useEffect(()=>{
     const getData = async () =>{
@@ -15,7 +20,7 @@ export default function Video({id,setPlayMovie}){
   const height = globalThis.innerHeight*0.9
   return(
     <>
-    <div onClick={()=>{setPlayMovie(false)}}>
+    {user ? <><div onClick={()=>{setPlayMovie(false)}}>
       <h1 className="cross" onClick={()=>{setPlayMovie(false)}}>X</h1>
       {movieId
       ? <iframe width={width} height={height} src={`https://www.youtube.com/embed/${movieId}`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
@@ -28,6 +33,7 @@ export default function Video({id,setPlayMovie}){
         top:10px;
         right:10px;
         cursor:pointer;
+        user-select:none;
       }
       div{
         position:fixed;
@@ -40,7 +46,9 @@ export default function Video({id,setPlayMovie}){
         display:grid;
         place-content:center;
       }
-    `}</style>
+    `}</style></> 
+    : ()=> {  } }
+    
     </>
   )
 }

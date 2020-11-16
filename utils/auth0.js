@@ -1,5 +1,4 @@
 import { initAuth0 } from '@auth0/nextjs-auth0';
- console.log(process.env.CLIENT_ID, process.env.CLIENT_SECRET)
 export default initAuth0({
   domain: process.env.DOMAIN,
   clientId: process.env.CLIENT_ID,

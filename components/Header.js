@@ -10,12 +10,6 @@ export default function Header() {
 
         {user ? (
           <div className="menu">
-            <input
-              className="barraBusq"
-              placeholder="Buscar..."
-              type="search"
-              name="busqueda"
-            />
             <img
               className="userImg"
               src={user?.picture || '/user.svg'}
@@ -120,3 +114,10 @@ export default function Header() {
           display: block;
         }
         } */
+// Barra de búsqueda
+          //   <input
+          //     className="barraBusq"
+          //     placeholder="Buscar..."
+          //     type="search"
+          //     name="busqueda"
+          //   />
