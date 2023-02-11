@@ -1,13 +1,19 @@
 import Movie from "./Movie";
-export default function Carousel({peliculas, nombre, setPlayMovie, setUseModal}) {
+export default function Carousel({ peliculas, nombre, setPlayMovie }) {
   return (
     <>
       <div>
-          <div   className="scroll">
-            {peliculas.map(pelicula => <Movie {...pelicula} setUseModal={setUseModal} setPlayMovie={setPlayMovie} key={pelicula.id} />)}
-          </div>
+        <div className="scroll">
+          {peliculas.map((pelicula) => (
+            <Movie
+              {...pelicula}
+              setPlayMovie={setPlayMovie}
+              key={pelicula.id}
+            />
+          ))}
+        </div>
       </div>
-      
+
       <style jsx>{`
         div {
           margin: 0px 20px;
@@ -20,7 +26,9 @@ export default function Carousel({peliculas, nombre, setPlayMovie, setUseModal})
           margin: 0;
           margin-bottom: 20px;
           display: flex;
-          overflow: auto;
+          overflow-x: scroll;
+          overflow-y: hidden;
+          height: 180px;
         }
         .scroll::-webkit-scrollbar {
           width: 12px;

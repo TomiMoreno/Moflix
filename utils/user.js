@@ -1,5 +1,5 @@
-import React from 'react';
-import fetch from 'isomorphic-unfetch';
+import React from "react";
+import fetch from "isomorphic-unfetch";
 
 // Use a global to save the user, so we don't have to fetch it again after page navigations
 let userState;
@@ -11,9 +11,14 @@ export const fetchUser = async () => {
     return userState;
   }
 
-  const res = await fetch('/api/me');
-  userState = res.ok ? await res.json() : null;
-  return userState;
+  try {
+    const res = await fetch("/api/me");
+    userState = res.ok ? await res.json() : null;
+    return userState;
+  } catch (e) {
+    console.log(e);
+    return {};
+  }
 };
 
 export const UserProvider = ({ value, children }) => {
@@ -34,7 +39,7 @@ export const useUser = () => React.useContext(User);
 export const useFetchUser = () => {
   const [data, setUser] = React.useState({
     user: userState || null,
-    loading: userState === undefined
+    loading: userState === undefined,
   });
 
   React.useEffect(() => {
@@ -44,12 +49,16 @@ export const useFetchUser = () => {
 
     let isMounted = true;
 
-    fetchUser().then((user) => {
-      // Only set the user if the component is still mounted
-      if (isMounted) {
-        setUser({ user, loading: false });
-      }
-    });
+    fetchUser()
+      .then((user) => {
+        // Only set the user if the component is still mounted
+        if (isMounted) {
+          setUser({ user, loading: false });
+        }
+      })
+      .catch(() => {
+        console.log("Error fetching user");
+      });
 
     return () => {
       isMounted = false;

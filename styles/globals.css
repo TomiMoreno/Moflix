@@ -4,9 +4,9 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    color: white;
-    background: #050011;
-    overflow-x: hidden;
+  color: white;
+  background: #050011;
+  overflow-x: hidden;
 }
 
 a {
@@ -16,4 +16,18 @@ a {
 
 * {
   box-sizing: border-box;
+}
+.movie {
+  cursor: pointer;
+  margin: 3px;
+  padding: 3px;
+  background-size: cover;
+  min-width: 300px;
+  width: 300px;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  transition: min-width 1s, height 1s, filter 1s;
+  align-items: flex-end;
+  justify-content: space-between;
 }

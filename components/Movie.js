@@ -1,7 +1,6 @@
-import {useState, useEffect} from 'react'
+import { useEffect } from "react";
+import { motion } from "framer-motion";
 export default function Movie(props) {
-  const [isHovering, setIsHovering] = useState(false)
-  const [position, setPosition] = useState(false)
   const {
     id,
     title,
@@ -15,44 +14,38 @@ export default function Movie(props) {
     reparto,
     estreno,
     setPlayMovie,
-    setUseModal
   } = props;
-  useEffect(()=>{
-    const timer = setTimeout(()=>{ 
-      if(isHovering){
-        setUseModal({position: position.getBoundingClientRect(), movieData: props})}
-      },499)
-    return () =>{
-      window.clearTimeout(timer)
-    }
-  },[isHovering, position])
-  const miniatura = `https://image.tmdb.org/t/p/w780/${backdrop_path}`
+  useEffect(() => {
+    const timer = setTimeout(() => {}, 499);
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, []);
+  const miniatura = `https://image.tmdb.org/t/p/w780/${backdrop_path}`;
   return (
     <>
-      <div 
-        onMouseOver={(e) => {setIsHovering(true); setPosition(e.currentTarget)}} 
-        onMouseOut={() => {setIsHovering(false)}} 
-        onClick={()=>{setPlayMovie(id)}}>
+      <div
+        style={{
+          minWidth: 300,
+        }}
+      >
+        <motion.div
+          className="movie"
+          whileHover={{
+            scale: 1.1,
+            filter: "grayscale(1)",
+            position: "absolute",
+            zIndex: 2,
+          }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => {
+            setPlayMovie(id);
+          }}
+        >
+          <img src={miniatura} alt={title} style={{ width: "100%" }} />
+        </motion.div>
       </div>
-      <style jsx>{`
-
-        div {
-          cursor:pointer;
-          margin: 3px;
-          padding: 3px;
-          background: url(${miniatura});
-          background-size: cover;
-          min-width: 300px;
-          width:300px;
-          height: 150px;
-          display: flex;
-          overflow-x: auto;
-          scroll-snap-type: x mandatory;
-          transition: min-width 1s, height 1s, filter 2s;
-          align-items: flex-end;
-          justify-content: space-between;
-        }
-      `}</style>
+      <style jsx>{``}</style>
     </>
   );
 }
